@@ -21,7 +21,6 @@ int main()
   string line, sub;
   bool exponent_match = false;
   vector<polynomial<float> > polyvect;
-  //remember to do exception handling and use argv for commandline file name
   myfile.open("polynomial.txt");
   
   /* ===== Error Handling ===== */
@@ -37,8 +36,10 @@ int main()
   /* Check File Format For Errors */
   for(int i = 0; i < num_polynomials+1; i++)
   {
+	// The first number in the row tells how many terms are in the row
+	// Get the first number, and make sure it is correct
 	if( getline(myfile, line) )
-    {
+    { 
       num_spaces = 0;
       num_char = 0;
       for(int j = 0; j < line.size(); j++)
@@ -84,7 +85,7 @@ int main()
   /* ===== Extract Polynomials From File ===== */
   for(int i = 0; i < num_polynomials; i++)
   {
-	myfile >> number_of_terms;
+    myfile >> number_of_terms;
 	term<float> t;
 	polynomial<float> p;
     for(int j = 0; j < number_of_terms; j++)
